@@ -90,41 +90,37 @@
 
   * ## **Task 1: service with a client to detect edges**
     Provide ROS .srv and .msg files required to create a ROS service for edge detection. Give example usage of this service with a client to detect edges for image files in a directory.
-   *  Launch the edge detection server:
-
-      Once the ROS core is running, you can proceed with launching the edge detection service and utilizing the provided client to detect edges for image files in a directory.
-      
+    * Launch the edge detection server:
+    Once the ROS core is running, you can proceed with launching the edge detection service and utilizing the provided client to detect edges for image files in a directory.
+    ```
+        roslaunch edge_detection edge_detection_server.launch
+    ```  
+    * Run the edge detection client with the image directory
+     ```
+        rosrun edge_detection edge_detection_client.py /path/to/image/directory
       ```
-          roslaunch edge_detection edge_detection_server.launch
-
-      ```  
-   * Run the edge detection client with the image directory
-      ```
-          rosrun edge_detection edge_detection_client.py /path/to/image/directory
-
-      ```
-      Replace "/path/to/image/directory" with the actual directory path containing the image files you want to detect edges for.
+       Replace "/path/to/image/directory" with the actual directory path containing the image files you want to detect edges for.
 
     * The client will process each image file in the specified directory, send a service request to the edge detection server, and receive the edge detection results. The results will be displayed with green lines drawn on the detected edges.
 
   * ##  **Task 2: usage of ROS Edge Detection with RViz Visualization**
-     This package provides functionality to detect edges for images subscribed from an image topic and visualize the detected edges on RViz. The images are obtained from a ROS bag file during playback. The detected edges are displayed as green lines overlaid on the original image.
-   * Topis used 
-       * image_topic = "/camera/color/image_raw"
+    This package provides functionality to detect edges for images subscribed from an image topic and visualize the detected edges on RViz. The images are obtained from a ROS bag file during playback. The detected edges are displayed as green lines overlaid on the original image.
+    * Topis used 
+        * image_topic = "/camera/color/image_raw"
 
-   * Start the RViz application by running the following command:
+    * Start the RViz application by running the following command:
       ```
           rosrun rviz rviz
       ```
-   * In the RViz interface, add an `Image` display by clicking on the "Add" button and selecting `Image` from the menu.
-   * Before launching the edge detection node, add **path of the bag file** containing the desired image topic in `edge_detector.launch`
-   * Configure the Image display by setting the following parameters:
-   * Launch the edge detection node and RViz configuration by running the following command
+    * In the RViz interface, add an `Image` display by clicking on the "Add" button and selecting `Image` from the menu.
+    * Before launching the edge detection node, add **path of the bag file** containing the desired image topic in `edge_detector.launch`
+    * Configure the Image display by setting the following parameters:
+    * Launch the edge detection node and RViz configuration by running the following command
       ```
         roslaunch edge_detection edge_detector.launch
       ```
-   * In RViz, select the image topic you want to display by clicking on the "Image" drop-down menu in the Image display and choosing the desired topic (e.g., /edge_image).
-   * The detected edges will be visualized in RViz. The detected edges will appear as green lines overlaid on the input image.
+    * In RViz, select the image topic you want to display by clicking on the "Image" drop-down menu in the Image display and choosing the desired topic (e.g., /edge_image).
+    * The detected edges will be visualized in RViz. The detected edges will appear as green lines overlaid on the input image.
   * ## **Task 3: Convert detected edge from 2D to 3D**
     This package provides functionality to detect edges in images obtained from a ROS bag file and convert the detected edge pixels from pixel coordinates (u, v) to 3D data (x, y, z) using depth images  and camera parameters. The 3D data is published to a ROS topic of type sensor_msgs/PointCloud2.
      * ### Topic used 

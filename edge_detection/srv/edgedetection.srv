@@ -1,0 +1,10 @@
+# The service request
+sensor_msgs/Image image
+float64 min_threshold
+float64 max_threshold
+float64 min_line_length
+float64 max_line_gap
+---
+# The service response
+sensor_msgs/Image result_image
+bool success

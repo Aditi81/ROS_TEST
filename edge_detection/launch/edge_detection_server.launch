@@ -1,0 +1,6 @@
+<launch>
+  <!-- Start the edge detection server node -->
+  <node name="edge_detection_server" pkg="edge_detection" type="edge_detection_server.py" output="screen" />
+
+  <!-- Additional nodes or configurations can be added here if needed -->
+</launch>

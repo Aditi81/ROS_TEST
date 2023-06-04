@@ -35,9 +35,9 @@
 
   ## a. Installation
   ``` 
-    # Clone the repository:
-    git clone https://github.com/your-username/edge-detection.git
-    cd edge-detection
+      # Clone the repository:
+      git clone https://github.com/your-username/edge-detection.git
+      cd edge-detection
   ```
   ## b. Install the required Python packages:
   ```
@@ -73,20 +73,20 @@
 * ## **Vision_ROS**
 
   ## a. Create a ROS Workspace
-  ```
+    ```
       mkdir -p ~/catkin_ws/src
       cd ~/catkin_ws/
       catkin_make
-  ```
+    ```
   ## b. Source catkin workspace
-  ```
+    ```
       echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
       source ~/.bashrc
-  ```
+    ```
   ## c. Start the ROS core:
-  ```
+    ```
       roscore
-  ```
+    ```
 
   * ## **Task 1: service with a client to detect edges**
     Provide ROS .srv and .msg files required to create a ROS service for edge detection. Give example usage of this service with a client to detect edges for image files in a directory.
@@ -98,7 +98,7 @@
     * Run the edge detection client with the image directory
      ```
         rosrun edge_detection edge_detection_client.py /path/to/image/directory
-      ```
+     ```
        Replace "/path/to/image/directory" with the actual directory path containing the image files you want to detect edges for.
 
     * The client will process each image file in the specified directory, send a service request to the edge detection server, and receive the edge detection results. The results will be displayed with green lines drawn on the detected edges.
@@ -109,16 +109,16 @@
         * image_topic = "/camera/color/image_raw"
 
     * Start the RViz application by running the following command:
-      ```
-          rosrun rviz rviz
-      ```
+     ```
+         rosrun rviz rviz
+     ```
     * In the RViz interface, add an `Image` display by clicking on the "Add" button and selecting `Image` from the menu.
     * Before launching the edge detection node, add **path of the bag file** containing the desired image topic in `edge_detector.launch`
     * Configure the Image display by setting the following parameters:
     * Launch the edge detection node and RViz configuration by running the following command
-      ```
+     ```
         roslaunch edge_detection edge_detector.launch
-      ```
+     ```
     * In RViz, select the image topic you want to display by clicking on the "Image" drop-down menu in the Image display and choosing the desired topic (e.g., /edge_image).
     * The detected edges will be visualized in RViz. The detected edges will appear as green lines overlaid on the input image.
   * ## **Task 3: Convert detected edge from 2D to 3D**
@@ -128,27 +128,27 @@
        * camera_info_topic = "/camera/depth/camera_info" 
 
      * ### build a package
-       ```
-          catkin_make
-       ```
+      ```
+         catkin_make
+      ```
      * During the execution, play the ROS bag file containing the desired image and depth topics by running the following command:
-       ``` 
-          rosbag play <bag_file.bag>
-       ``` 
+      ``` 
+         rosbag play <bag_file.bag>
+      ``` 
        Replace **<bag_file.bag>** with the actual path to your ROS bag file.
 
-      * Start the edge detection and 2D-3D conversion node by running the following command:
-       ```
-          rosrun edge_detection edge_detector_2d_3d.py
-       ```
-      * In RViz, add a PointCloud2 display by clicking on the "Add" button and selecting **PointCloud2** from the menu.
+     * Start the edge detection and 2D-3D conversion node by running the following command:
+      ```
+         rosrun edge_detection edge_detector_2d_3d.py
+      ```
+     * In RViz, add a PointCloud2 display by clicking on the "Add" button and selecting **PointCloud2** from the menu.
 
-      * Configure the PointCloud2 display by setting the following parameters:
+     * Configure the PointCloud2 display by setting the following parameters:
 
          * Topic: Select the `/edge_points` topic.
          * Size (Pixels): Set an appropriate point size for visualization.
          * Color Transformer: Select the desired color transformation for the point cloud.
-      * The input image and the detected edges will be visualized in RViz. The converted 3D point cloud data will also be displayed as a point cloud.
+     * The input image and the detected edges will be visualized in RViz. The converted 3D point cloud data will also be displayed as a point cloud.
 
 
   * ## **Additional Notes**
